@@ -56,29 +56,31 @@ class Board:
             Move(lambda row_i, col_i: row_i < self.num_rows - 1, lambda row_i: row_i + 1, lambda col_i: col_i), # down
             Move(lambda row_i, col_i: col_i > 0, lambda row_i: row_i, lambda col_i: col_i - 1), # left
             Move(lambda row_i, col_i: col_i < self.num_cols - 1, lambda row_i: row_i, lambda col_i: col_i + 1), # right
+            Move(lambda row_i, col_i: row_i > 0 and col_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i - 1), # upleft
+            Move(lambda row_i, col_i: row_i > 0 and col_i < self.num_cols - 1, lambda row_i: row_i - 1, lambda col_i: col_i + 1), # upright
+            Move(lambda row_i, col_i: row_i < self.num_rows - 1 and col_i > 0, lambda row_i: row_i + 1, lambda col_i: col_i - 1), # downleft
+            Move(lambda row_i, col_i: row_i < self.num_rows - 1 and col_i < self.num_cols - 1, lambda row_i: row_i + 1, lambda col_i: col_i + 1), # downright
         ]
 
     def _generate(self, min_vowels=4, min_consonants=4):
         # TODO
-        return [
-            [ 's', 't', 'c', 's' ],
-            [ 't', 'r', 'a', 'p' ],
-            [ 'a', 'o', 'r', 't' ],
-            [ 'c', 'a', 's', 'e' ],
-        ]
         # return [
-        #     [ 'c', 't', 'r', 's' ],
-        #     [ 'b', 'a', 'r', 'i' ],
-        #     [ 'b', 'o', 'f', 't' ],
-        #     [ 't', 'a', 'r', 'e' ],
+        #     [ 's', 't', 'c', 's' ],
+        #     [ 't', 'r', 'a', 'p' ],
+        #     [ 'a', 'o', 'r', 't' ],
+        #     [ 'c', 'a', 's', 'e' ],
         # ]
+        return [
+            [ 'c', 't', 'r', 's' ],
+            [ 'b', 'a', 'r', 'i' ],
+            [ 'b', 'o', 'f', 't' ],
+            [ 't', 'a', 'r', 'e' ],
+        ]
 
     def get_position(self, row_index, col_index):
         return self.matrix[row_index][col_index]
 
 board = Board()
-print('hiii')
-print(board.moves)
 
 
 class Round:
@@ -107,10 +109,6 @@ class Round:
             if move.is_allowed(row_i, col_i) and trie_node.has_next(self.board.get_position(next_row_i, next_col_i)):
                 next_char = self.board.get_position(next_row_i, next_col_i)
                 self._visit_position(prefix + next_char, trie_node.get_next(next_char), next_row_i, next_col_i)
-
-        # if row_i > 0 and trie_node.has_next(self.board.get_position(row_i - 1, col_i)):
-        #     next_char = self.board.get_position(row_i - 1, col_i)
-        #     self._visit_position(prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
 
 
 round = Round(valid_words, board)
