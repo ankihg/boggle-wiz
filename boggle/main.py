@@ -42,6 +42,16 @@ class Board:
     consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
     all_letters = vowels + consonants
 
+    class Move:
+        def __init__(self, is_allowed, get_row_i, get_col_i):
+            self.is_allowed = is_allowed
+            self.get_row_i = get_row_i
+            self.get_col_i = get_col_i
+
+    moves = [
+        Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i),
+    ]
+
     def __init__(self, num_rows=4, num_cols=4):
         self.num_rows = num_rows
         self.num_cols = num_cols
@@ -66,10 +76,12 @@ class Board:
         return self.matrix[row_index][col_index]
 
 board = Board()
-print(board.get_position(0, 3))
+print('hiii')
+print(board.moves)
 
 
 class Round:
+
     def __init__(self, valid_words, board):
         self.trie_root = build_trie(valid_words)
         self.board = board
@@ -88,9 +100,16 @@ class Round:
         if trie_node.is_word:
             self.found_words[prefix] = True
 
-        if row_i > 0 and trie_node.has_next(self.board.get_position(row_i - 1, col_i)):
-            next_char = self.board.get_position(row_i - 1, col_i)
-            self._visit_position(prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
+        for move in self.board.moves:
+            next_row_i = move.get_row_i(row_i)
+            next_col_i = move.get_col_i(col_i)
+            if move.is_allowed(row_i, col_i) and trie_node.has_next(self.board.get_position(next_row_i, next_col_i)):
+                next_char = self.board.get_position(next_row_i, next_col_i)
+                self._visit_position(prefix + next_char, trie_node.get_next(next_char), next_row_i, next_col_i)
+
+        # if row_i > 0 and trie_node.has_next(self.board.get_position(row_i - 1, col_i)):
+        #     next_char = self.board.get_position(row_i - 1, col_i)
+        #     self._visit_position(prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
 
 
 round = Round(valid_words, board)
