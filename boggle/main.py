@@ -4,6 +4,12 @@ class TrieNode:
         self.is_word = is_word
         self.children_by_char = children_by_char
 
+    def has_next(self, char):
+        return char in self.children_by_char
+
+    def get_next(self, char):
+        return self.children_by_char[char]
+
 
 def build_trie(valid_words):
     trie_root = TrieNode('', False, {})
@@ -23,7 +29,7 @@ def build_trie_nodes(word, trie_node):
     trie_node.is_word = True    # end of word, so mark as is_word
 
 
-valid_words = [ 'carrot', 'cat', 'car', 'cars', 'cell', 'bat' ]
+valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat' ]
 trie_root = build_trie(valid_words)
 # True
 print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].is_word)
@@ -44,14 +50,49 @@ class Board:
     def _generate(self, min_vowels=4, min_consonants=4):
         # TODO
         return [
-            [ 'c', 't', 'r', 's' ],
-            [ 'b', 'a', 'r', 'i' ],
-            [ 'b', 'o', 'f', 't' ],
-            [ 't', 'a', 'r', 'e' ],
+            [ 's', 't', 'r', 's' ],
+            [ 't', 'a', 'r', 'i' ],
+            [ 'a', 'o', 'f', 't' ],
+            [ 'c', 'a', 'r', 'e' ],
         ]
+        # return [
+        #     [ 'c', 't', 'r', 's' ],
+        #     [ 'b', 'a', 'r', 'i' ],
+        #     [ 'b', 'o', 'f', 't' ],
+        #     [ 't', 'a', 'r', 'e' ],
+        # ]
 
     def get_position(self, row_index, col_index):
         return self.matrix[row_index][col_index]
 
 board = Board()
 print(board.get_position(0, 3))
+
+
+def play(valid_words, board):
+    trie_root = build_trie(valid_words)
+    found_words = {}
+    for row_i in range(0, board.num_rows):
+        for col_i in range(0, board.num_cols):
+            char = board.get_position(row_i, col_i)
+            if trie_root.has_next(char):
+                visit_position(board, found_words, char, trie_root.get_next(char), row_i, col_i)
+    print(found_words)
+
+# TODO exclude previosuly used positions
+def visit_position(board, found_words, prefix, trie_node, row_i, col_i):
+    print('\n')
+    print(prefix)
+    if trie_node.is_word:
+        found_words[prefix] = True
+
+    print(row_i)
+    print(board.get_position(row_i - 1, col_i))
+    print(trie_node.has_next(board.get_position(row_i - 1, col_i)))
+    if row_i > 0 and trie_node.has_next(board.get_position(row_i - 1, col_i)):
+        next_char = board.get_position(row_i - 1, col_i)
+        visit_position(board, found_words, prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
+
+
+
+play(valid_words, board)
