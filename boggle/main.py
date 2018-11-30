@@ -80,47 +80,18 @@ class Round:
             for col_i in range(0, self.board.num_cols):
                 char = self.board.get_position(row_i, col_i)
                 if self.trie_root.has_next(char):
-                    self.visit_position(char, self.trie_root.get_next(char), row_i, col_i)
+                    self._visit_position(char, self.trie_root.get_next(char), row_i, col_i)
         return self.found_words
 
     # TODO exclude previosuly used positions
-    def visit_position(self, prefix, trie_node, row_i, col_i):
+    def _visit_position(self, prefix, trie_node, row_i, col_i):
         if trie_node.is_word:
             self.found_words[prefix] = True
 
         if row_i > 0 and trie_node.has_next(self.board.get_position(row_i - 1, col_i)):
             next_char = self.board.get_position(row_i - 1, col_i)
-            self.visit_position(prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
+            self._visit_position(prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
 
 
 round = Round(valid_words, board)
 print(round.play())
-
-
-# def play(valid_words, board):
-#     trie_root = build_trie(valid_words)
-#     found_words = {}
-#     for row_i in range(0, board.num_rows):
-#         for col_i in range(0, board.num_cols):
-#             char = board.get_position(row_i, col_i)
-#             if trie_root.has_next(char):
-#                 visit_position(board, found_words, char, trie_root.get_next(char), row_i, col_i)
-#     print(found_words)
-#
-# # TODO exclude previosuly used positions
-# def visit_position(board, found_words, prefix, trie_node, row_i, col_i):
-#     print('\n')
-#     print(prefix)
-#     if trie_node.is_word:
-#         found_words[prefix] = True
-#
-#     print(row_i)
-#     print(board.get_position(row_i - 1, col_i))
-#     print(trie_node.has_next(board.get_position(row_i - 1, col_i)))
-#     if row_i > 0 and trie_node.has_next(board.get_position(row_i - 1, col_i)):
-#         next_char = board.get_position(row_i - 1, col_i)
-#         visit_position(board, found_words, prefix + next_char, trie_node.get_next(next_char), row_i - 1, col_i)
-
-
-
-# play(valid_words, board)
