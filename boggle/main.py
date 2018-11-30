@@ -29,7 +29,7 @@ def build_trie_nodes(word, trie_node):
     trie_node.is_word = True    # end of word, so mark as is_word
 
 
-valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat' ]
+valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat', 'trap' ]
 trie_root = build_trie(valid_words)
 # True
 print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].is_word)
@@ -54,13 +54,15 @@ class Board:
         self.moves = [
             Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i), # up
             Move(lambda row_i, col_i: row_i < self.num_rows - 1, lambda row_i: row_i + 1, lambda col_i: col_i), # down
+            Move(lambda row_i, col_i: col_i > 0, lambda row_i: row_i, lambda col_i: col_i - 1), # left
+            Move(lambda row_i, col_i: col_i < self.num_cols - 1, lambda row_i: row_i, lambda col_i: col_i + 1), # right
         ]
 
     def _generate(self, min_vowels=4, min_consonants=4):
         # TODO
         return [
             [ 's', 't', 'c', 's' ],
-            [ 't', 'a', 'a', 'i' ],
+            [ 't', 'r', 'a', 'p' ],
             [ 'a', 'o', 'r', 't' ],
             [ 'c', 'a', 's', 'e' ],
         ]
