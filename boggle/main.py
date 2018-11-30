@@ -36,34 +36,33 @@ print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'
 # False
 print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].children_by_char['r'].is_word)
 
+class Move:
+    def __init__(self, is_allowed, get_row_i, get_col_i):
+        self.is_allowed = is_allowed
+        self.get_row_i = get_row_i
+        self.get_col_i = get_col_i
 
 class Board:
     vowels = ['a', 'e', 'i', 'o', 'u']
     consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
     all_letters = vowels + consonants
 
-    class Move:
-        def __init__(self, is_allowed, get_row_i, get_col_i):
-            self.is_allowed = is_allowed
-            self.get_row_i = get_row_i
-            self.get_col_i = get_col_i
-
-    moves = [
-        Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i),
-    ]
-
     def __init__(self, num_rows=4, num_cols=4):
         self.num_rows = num_rows
         self.num_cols = num_cols
         self.matrix = self._generate()
+        self.moves = [
+            Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i), # up
+            Move(lambda row_i, col_i: row_i < self.num_rows - 1, lambda row_i: row_i + 1, lambda col_i: col_i), # down
+        ]
 
     def _generate(self, min_vowels=4, min_consonants=4):
         # TODO
         return [
-            [ 's', 't', 'r', 's' ],
-            [ 't', 'a', 'r', 'i' ],
-            [ 'a', 'o', 'f', 't' ],
-            [ 'c', 'a', 'r', 'e' ],
+            [ 's', 't', 'c', 's' ],
+            [ 't', 'a', 'a', 'i' ],
+            [ 'a', 'o', 'r', 't' ],
+            [ 'c', 'a', 's', 'e' ],
         ]
         # return [
         #     [ 'c', 't', 'r', 's' ],
