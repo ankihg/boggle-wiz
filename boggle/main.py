@@ -40,4 +40,5 @@ def _mark_position_as_used(used_positions, row_i, col_i):
 
 board = Board()
 round = Round(False, board)
+print(round.board.matrix)
 print(round.play())
