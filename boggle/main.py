@@ -15,14 +15,20 @@ class TrieNode:
 
 def build_trie(valid_words):
     trie_root = TrieNode('', False, {})
-    for word in valid_words:
-        build_trie_nodes(word, trie_root)
+    if valid_words:
+        for word in valid_words:
+            build_trie_nodes(word, trie_root)
+    else:
+        with open('./boggle/resources/valid-words.txt', 'r') as lines:
+            for word in lines:
+                # print('w', word)
+                build_trie_nodes(word.strip(), trie_root)
     return trie_root
-
 
 def build_trie_nodes(word, trie_node):
     # c a r r o t
     for char in word:
+        # print('c', char)
         if char in trie_node.children_by_char:
             trie_node = trie_node.children_by_char[char]
         else:
@@ -31,12 +37,15 @@ def build_trie_nodes(word, trie_node):
     trie_node.is_word = True    # end of word, so mark as is_word
 
 
-valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat', 'trap' ]
-trie_root = build_trie(valid_words)
-# True
-print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].is_word)
-# False
-print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].children_by_char['r'].is_word)
+## TRIE TESTING
+# valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat', 'trap' ]
+# trie_root = build_trie(valid_words)
+# # True
+# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].is_word)
+# # False
+# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].children_by_char['r'].is_word)
+# # True
+# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['t'].is_word)
 
 class Move:
     def __init__(self, is_allowed, get_row_i, get_col_i):
@@ -82,13 +91,11 @@ class Board:
     def get_position(self, row_index, col_index):
         return self.matrix[row_index][col_index]
 
-board = Board()
-
-
 class Round:
 
     def __init__(self, valid_words, board):
         self.trie_root = build_trie(valid_words)
+
         self.board = board
         self.found_words = {}
 
@@ -120,5 +127,6 @@ def _mark_position_as_used(used_positions, row_i, col_i):
     used_positions[str(row_i) + ',' + str(col_i)] = True
 
 
-round = Round(valid_words, board)
+board = Board()
+round = Round(False, board)
 print(round.play())
