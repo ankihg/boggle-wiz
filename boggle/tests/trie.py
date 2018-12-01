@@ -2,6 +2,7 @@
 # `python3 -m unittest tests.trie` from /boggle dir
 
 import unittest
+from main import TrieNode
 
 class TestTrie(unittest.TestCase):
 
