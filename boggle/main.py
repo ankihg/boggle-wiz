@@ -1,16 +1,6 @@
 import copy
 from trie import build_trie
 
-## TRIE TESTING
-# valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'bat', 'trap' ]
-# trie_root = build_trie(valid_words)
-# # True
-# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].is_word)
-# # False
-# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['r'].children_by_char['r'].is_word)
-# # True
-# print(trie_root.children_by_char['c'].children_by_char['a'].children_by_char['t'].is_word)
-
 class Move:
     def __init__(self, is_allowed, get_row_i, get_col_i):
         self.is_allowed = is_allowed
