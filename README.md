@@ -50,7 +50,7 @@ A trie is an ideal data structure for the scenario because you can traverse the 
 The program reads the `valid-words` file line by line, adding each word to the trie. On the last character of each word, the node is marked as `is_word`, so during the navigation process any node that `is_word` can be added to the collection of found words.
 
 
-The following is a sample trie fed only the words `['car', 'carrot', 'cats', bat]` where `( )` denotes `is_word` and `[ ]` not `is_word`
+The following is a sample trie fed only the words `['car', 'carrot', 'cats', 'bat']`. Nodes surrounded by `( )` denotes `is_word` and `[ ]` not `is_word`.
 ```
       ['']
     /      \
