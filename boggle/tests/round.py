@@ -23,7 +23,8 @@ class TestRound(unittest.TestCase):
         self.assertTrue('car' in found_words)
         self.assertTrue('cars' in found_words)
         self.assertTrue('carrot' in found_words)
-        self.assertFalse('komo' in found_words)
+        self.assertFalse('komo' in found_words) # uses already used positions
+        self.assertFalse('ctrs' in found_words) # not a valid word
 
 
 
