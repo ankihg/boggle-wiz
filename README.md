@@ -58,7 +58,7 @@ The following is a sample trie fed only the words `['car', 'carrot', 'cats', 'ba
     |        |
    [a]      [a]
    /  \      |
- (r)  [t]  (t)   
+ (r)  [t]   (t)   
   |    |
  [r]  (s)
   |
