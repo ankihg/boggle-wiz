@@ -19,8 +19,9 @@ def build_trie(valid_words):
     else:
         with open('./resources/valid-words.txt', 'r') as lines:
             for word in lines:
-                # print('w', word)
-                build_trie_nodes(word.strip(), trie_root)
+                trimmed_word = word.strip()
+                if len(trimmed_word) >= 3:
+                    build_trie_nodes(trimmed_word.lower(), trie_root)
     return trie_root
 
 def build_trie_nodes(word, trie_node):

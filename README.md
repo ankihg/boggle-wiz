@@ -65,8 +65,6 @@ The following is a sample trie fed only the words `['car', 'carrot', 'cats', 'ba
  (t)
 ```
 
-Since all words in the `valid-words` file are three characters or longer, there is no logic to require that. If desired, I would likely add that logic to the program as it's reading each word from the file: If the word length is not greater than or equal to three, don't send it to the trie.
-
 With more time I would write the trie out to file once it is built, so it can just be read in, instead of regenerated, on subsequent rounds.
 
 
