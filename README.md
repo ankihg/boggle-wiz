@@ -78,4 +78,8 @@ With more time I would write the trie out to file once it is built, so it can ju
 ### Generate board
 
 ### Navigate board
-At each position, a list of potential next moves is evaluated. If the move is allowed (i.e. it won't take you off the edge of the board), the resulting position has not already been used in the progressing word, and the resulting character is a next character for the current node of the trie, then recurse into the next position, passing the next node of the trie and a deep copy of the `used_positions` dictionary. At each point of recursion, if the current trie node is marked as `is_word`, then the current string is added to the `found_words` dictionary.
+At each position, a list of potential next moves is evaluated.
+
+If the move is allowed (i.e. it won't take you off the edge of the board), the resulting position has not already been used in the progressing word, and the resulting character is a next character for the current node of the trie, then the program recurses into the next position, passing the next node of the trie and a deep copy of the `used_positions` dictionary.
+
+At each point of recursion, if the current trie node is marked as `is_word`, then the current string is added to the `found_words` dictionary.
