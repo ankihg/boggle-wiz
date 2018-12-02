@@ -10,13 +10,13 @@ class TestRound(unittest.TestCase):
     def test_round(self):
         valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'komo' ]
         board = Board()
+        round = Round(valid_words, board)
         board.matrix = [
             [ 'c', 't', 'r', 's' ],
             [ 'b', 'a', 'r', 'i' ],
             [ 'b', 'o', 'k', 'o' ],
             [ 't', 'a', 'r', 'm' ],
         ]
-        round = Round(valid_words, board)
         found_words = round.solve()
 
         self.assertTrue('cat' in found_words)

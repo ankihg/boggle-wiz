@@ -7,6 +7,8 @@ class Round:
         self.trie_root = build_trie(valid_words)
 
         self.board = board
+        self.board.generateMatrix()
+
         self.found_words = {}
 
     def solve(self):

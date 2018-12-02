@@ -20,7 +20,6 @@ class Board:
         if self.min_vowels + self.min_consonants > self.num_rows * self.num_cols:
             raise ValueError('`min_vowels` and `min_consonants` requirements are too large for board dimensions')
 
-        self.matrix = self.generate()
         self.moves = [
             Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i), # up
             Move(lambda row_i, col_i: row_i < self.num_rows - 1, lambda row_i: row_i + 1, lambda col_i: col_i), # down
@@ -32,7 +31,7 @@ class Board:
             Move(lambda row_i, col_i: row_i < self.num_rows - 1 and col_i < self.num_cols - 1, lambda row_i: row_i + 1, lambda col_i: col_i + 1), # downright
         ]
 
-    def generate(self):
+    def generateMatrix(self):
         positions_to_populate = []
         matrix = []
         for row_i in range(0, self.num_rows):
@@ -54,7 +53,7 @@ class Board:
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.all_letters[random.randrange(len(Board.all_letters))]
 
-        return matrix
+        self.matrix = matrix
 
     def get_position(self, row_index, col_index):
         return self.matrix[row_index][col_index]
