@@ -7,9 +7,17 @@ A program that generates and solves a game of boggle
 
 
 ## Run
-Run the following from the `./boggle` directory
+Run the following from the `./boggle` directory to run with default parameters
 ```
-python main.py
+python play.py
+```
+
+For a custom play, the program takes the following optional arguments
+```
+--num_rows NUM_ROWS  number of rows on board
+--num_cols NUM_COLS  number of columns on board
+--min_vow MIN_VOW    minimum number of vowels on board
+--min_cons MIN_CONS  minimum number of consonants on board
 ```
 
 Output will resemble the following
