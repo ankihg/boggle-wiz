@@ -43,5 +43,28 @@ The task is broken into the following three sections
 - [Navigate the board](#navigate-board)
 
 ### Generate board
+
 ### Build trie
+A trie is an ideal data structure for the scenario because you can traverse the trie as you are navigating through the board.
+
+The program reads the `valid-words` file line by line, adding each word to the trie. On the last character of each word, the node is marked as `is_word`, so during the navigation process any node that `is_word` can be added to the collection of found words.
+
+
+The following is a sample trie fed only the words `['car', 'carrot', 'cats', bat]` where `( )` denotes `is_word` and `[ ]` not `is_word`
+```
+      ['']
+    /      \
+   [c]      [b]
+    |        |
+   [a]      [a]
+   /  \      |
+  (r)  [t]  (t)   
+   |    |
+  [r]  (s)
+   |
+  [o]
+   |
+  (t)
+```
+
 ### Navigate board
