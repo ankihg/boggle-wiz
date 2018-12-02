@@ -11,9 +11,15 @@ class Board:
     consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
     all_letters = vowels + consonants
 
-    def __init__(self, num_rows=4, num_cols=4):
+    def __init__(self, num_rows=4, num_cols=4, min_vowels=4, min_consonants=4):
         self.num_rows = num_rows
         self.num_cols = num_cols
+        self.min_vowels = min_vowels
+        self.min_consonants = min_consonants
+
+        if min_vowels + min_consonants > self.num_rows * self.num_cols:
+            raise ValueError('`min_vowels` and `min_consonants` requirements are too large for board dimensions')
+
         self.matrix = self._generate()
         self.moves = [
             Move(lambda row_i, col_i: row_i > 0, lambda row_i: row_i - 1, lambda col_i: col_i), # up
@@ -26,9 +32,8 @@ class Board:
             Move(lambda row_i, col_i: row_i < self.num_rows - 1 and col_i < self.num_cols - 1, lambda row_i: row_i + 1, lambda col_i: col_i + 1), # downright
         ]
 
-    def _generate(self, min_vowels=4, min_consonants=4):
+    def _generate(self):
         # TODO tighten logic, check for out of range arguments
-        n_positions = self.num_rows * self.num_cols # unused
 
         positions_to_populate = []
         matrix = []
@@ -40,11 +45,11 @@ class Board:
                 positions_to_populate.append( (row_i, col_i) )
 
         # TODO tighten logic, check for out of range arguments
-        for i in range(0, min_vowels):
+        for i in range(0, self.min_vowels):
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.vowels[random.randrange(len(Board.vowels))]
 
-        for i in range(0, min_vowels):
+        for i in range(0, self.min_vowels):
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.consonants[random.randrange(len(Board.consonants))]
 
