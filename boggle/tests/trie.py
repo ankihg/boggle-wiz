@@ -1,5 +1,5 @@
 # TO RUN
-# `python3 -m unittest tests.trie` from /boggle dir
+# `python -m unittest tests.trie` from /boggle dir
 
 import unittest
 from trie import build_trie

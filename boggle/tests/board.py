@@ -1,5 +1,5 @@
 # TO RUN
-# `python3 -m unittest tests.board` from /boggle dir
+# `python -m unittest tests.board` from /boggle dir
 
 import unittest
 from board import Board

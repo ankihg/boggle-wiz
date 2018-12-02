@@ -1,5 +1,5 @@
 # TO RUN
-# `python3 -m unittest tests.round` from /boggle dir
+# `python -m unittest tests.round` from /boggle dir
 
 import unittest
 from round import Round
