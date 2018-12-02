@@ -19,7 +19,6 @@ class Round:
                     self._visit_position(char, self.trie_root.get_next(char), row_i, col_i, {})
         return self.found_words
 
-    # TODO exclude previosuly used positions
     def _visit_position(self, prefix, trie_node, row_i, col_i, used_positions):
         if trie_node.is_word:
             self.found_words[prefix] = True
