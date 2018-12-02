@@ -27,7 +27,7 @@ class Round:
         for move in self.board.moves:
             next_row_i = move.get_row_i(row_i)
             next_col_i = move.get_col_i(col_i)
-            if move.is_allowed(row_i, col_i) and trie_node.has_next(self.board.get_position(next_row_i, next_col_i)) and (not _is_position_used(used_positions, next_row_i, next_col_i)):
+            if move.is_allowed(row_i, col_i) and (not _is_position_used(used_positions, next_row_i, next_col_i)) and trie_node.has_next(self.board.get_position(next_row_i, next_col_i)):
                 next_char = self.board.get_position(next_row_i, next_col_i)
                 self._visit_position(prefix + next_char, trie_node.get_next(next_char), next_row_i, next_col_i, copy.deepcopy(used_positions))
 
