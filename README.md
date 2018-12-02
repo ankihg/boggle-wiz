@@ -20,7 +20,7 @@ For a custom play, the program takes the following optional arguments
 --min_cons MIN_CONS  minimum number of consonants on board
 ```
 
-Output will resemble the following
+Play output will resemble the following
 ```
 > INITIALIZING THE BOARD ...
 > BUILDING VALID WORDS TRIE ...
