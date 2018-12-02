@@ -17,7 +17,7 @@ class TestRound(unittest.TestCase):
             [ 't', 'a', 'r', 'm' ],
         ]
         round = Round(valid_words, board)
-        found_words = round.play()
+        found_words = round.solve()
 
         self.assertTrue('cat' in found_words)
         self.assertTrue('car' in found_words)

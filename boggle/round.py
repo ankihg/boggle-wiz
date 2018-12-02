@@ -9,7 +9,7 @@ class Round:
         self.board = board
         self.found_words = {}
 
-    def play(self):
+    def solve(self):
         for row_i in range(0, self.board.num_rows):
             for col_i in range(0, self.board.num_cols):
                 char = self.board.get_position(row_i, col_i)
