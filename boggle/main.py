@@ -32,10 +32,10 @@ class Round:
                 self._visit_position(prefix + next_char, trie_node.get_next(next_char), next_row_i, next_col_i, copy.deepcopy(used_positions))
 
 def _is_position_used(used_positions, row_i, col_i):
-    return str(row_i) + ',' + str(col_i) in used_positions
+    return (row_i, col_i) in used_positions
 
 def _mark_position_as_used(used_positions, row_i, col_i):
-    used_positions[str(row_i) + ',' + str(col_i)] = True
+    used_positions[(row_i, col_i)] = True
 
 
 board = Board()
