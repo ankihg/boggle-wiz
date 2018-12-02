@@ -31,7 +31,7 @@ class Board:
             Move(lambda row_i, col_i: row_i < self.num_rows - 1 and col_i < self.num_cols - 1, lambda row_i: row_i + 1, lambda col_i: col_i + 1), # downright
         ]
 
-    def generateMatrix(self):
+    def generate_matrix(self):
         positions_to_populate = []
         matrix = []
         for row_i in range(0, self.num_rows):
