@@ -33,8 +33,6 @@ class Board:
         ]
 
     def generate(self):
-        # TODO tighten logic, check for out of range arguments
-
         positions_to_populate = []
         matrix = []
         for row_i in range(0, self.num_rows):
@@ -44,7 +42,6 @@ class Board:
                 row.append(None)
                 positions_to_populate.append( (row_i, col_i) )
 
-        # TODO tighten logic, check for out of range arguments
         for i in range(0, self.min_vowels):
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.vowels[random.randrange(len(Board.vowels))]
@@ -58,18 +55,6 @@ class Board:
             matrix[position[0]][position[1]] = Board.all_letters[random.randrange(len(Board.all_letters))]
 
         return matrix
-        # return [
-        #     [ 's', 't', 'c', 's' ],
-        #     [ 't', 'r', 'a', 'p' ],
-        #     [ 'a', 'o', 'r', 't' ],
-        #     [ 'c', 'a', 's', 'e' ],
-        # ]
-        # return [
-        #     [ 'c', 't', 'r', 's' ],
-        #     [ 'b', 'a', 'r', 'i' ],
-        #     [ 'b', 'o', 'f', 't' ],
-        #     [ 't', 'a', 'r', 'e' ],
-        # ]
 
     def get_position(self, row_index, col_index):
         return self.matrix[row_index][col_index]
