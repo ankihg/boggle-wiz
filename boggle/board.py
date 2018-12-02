@@ -12,12 +12,12 @@ class Board:
     all_letters = vowels + consonants
 
     def __init__(self, num_rows=4, num_cols=4, min_vowels=4, min_consonants=4):
-        self.num_rows = num_rows
-        self.num_cols = num_cols
-        self.min_vowels = min_vowels
-        self.min_consonants = min_consonants
+        self.num_rows = num_rows or 4
+        self.num_cols = num_cols or 4
+        self.min_vowels = min_vowels or 4
+        self.min_consonants = min_consonants or 4
 
-        if min_vowels + min_consonants > self.num_rows * self.num_cols:
+        if self.min_vowels + self.min_consonants > self.num_rows * self.num_cols:
             raise ValueError('`min_vowels` and `min_consonants` requirements are too large for board dimensions')
 
         self.matrix = self.generate()
@@ -46,7 +46,7 @@ class Board:
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.vowels[random.randrange(len(Board.vowels))]
 
-        for i in range(0, self.min_vowels):
+        for i in range(0, self.min_consonants):
             position = positions_to_populate.pop(random.randrange(len(positions_to_populate)))
             matrix[position[0]][position[1]] = Board.consonants[random.randrange(len(Board.consonants))]
 

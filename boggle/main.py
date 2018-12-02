@@ -1,22 +1,11 @@
-import time
-from board import Board
-from round import Round
+import argparse
+from run import run
 
-print('> INITIALIZING THE BOARD ...')
-board = Board()
-print('> BUILDING VALID WORDS TRIE ...')
-round = Round(False, board)
+parser = argparse.ArgumentParser()
+parser.add_argument('--num_rows', help='number of rows on board', type=int)
+parser.add_argument('--num_cols', help='number of columns on board', type=int)
+parser.add_argument('--min_vow', help='minimum number of vowels on board', type=int)
+parser.add_argument('--min_cons', help='minimum number of consonants on board', type=int)
 
-print('\n')
-print('> HERE IS THE BOARD')
-round.board.print()
-print('\n')
-
-start_time = time.time()
-found_words_dict = round.solve()
-end_time = time.time()
-time_elapsed = end_time - start_time
-
-found_words = list(found_words_dict.keys())
-print('>', len(found_words), 'WORDS FOUND IN', time_elapsed, 'SECONDS')
-print(found_words)
+args = parser.parse_args()
+run(args.num_rows, args.num_cols, args.min_vow, args.min_cons)
