@@ -2,7 +2,7 @@
 # `python3 -m unittest tests.round` from /boggle dir
 
 import unittest
-from main import Round
+from round import Round
 from board import Board
 
 class TestRound(unittest.TestCase):
