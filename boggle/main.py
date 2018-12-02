@@ -4,5 +4,6 @@ from round import Round
 
 board = Board()
 round = Round(False, board)
-print(round.board.matrix)
+print('BOARD')
+round.board.print()
 print(round.play())
