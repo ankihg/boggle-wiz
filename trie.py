@@ -25,9 +25,7 @@ def build_trie(valid_words):
     return trie_root
 
 def build_trie_nodes(word, trie_node):
-    # c a r r o t
     for char in word:
-        # print('c', char)
         if char in trie_node.children_by_char:
             trie_node = trie_node.children_by_char[char]
         else:
