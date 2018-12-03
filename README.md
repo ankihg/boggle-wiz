@@ -76,6 +76,7 @@ The following is a sample trie fed only the words `['car', 'carrot', 'cats', 'ba
 With more time I would write the trie out to file once it is built, so it can just be read in, instead of regenerated, on subsequent rounds.
 
 ### Generate board
+To generate the board, the program creates a list of all positions to populate. It then randomly selects positions from the list, first choosing random vowels until the minimum vowel requirement is met, and then does the same with consonants, placing each letter on the board as it is chosen. With the remaining positions to populate, it randomly selects from a list of all letters.
 
 ### Navigate board
 At each position, a list of potential next moves is evaluated.
