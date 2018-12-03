@@ -6,7 +6,7 @@ def run(num_rows, num_cols, min_vowels, min_consonants):
     print('> INITIALIZING THE BOARD ...')
     board = Board(num_rows, num_cols, min_vowels, min_consonants)
     print('> BUILDING VALID WORDS TRIE ...')
-    round = Round(False, board)
+    round = Round(board)
 
     print('\n')
     print('> HERE IS THE BOARD')

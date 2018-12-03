@@ -3,7 +3,7 @@ from trie import build_trie
 
 class Round:
 
-    def __init__(self, valid_words, board):
+    def __init__(self, board, valid_words=False):
         self.trie_root = build_trie(valid_words)
 
         self.board = board
