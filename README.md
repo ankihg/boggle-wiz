@@ -7,7 +7,7 @@ A program that generates and solves a game of boggle
 
 
 ## Run
-Run the following from the `./boggle` directory to run with default parameters
+Run the following from the root directory of the project to play with default parameters
 ```
 python play.py
 ```
@@ -38,7 +38,7 @@ Play output will resemble the following
 ```
 
 ## Test
-Run the following from the `./boggle` directory
+Run the following from the root directory of the project to test
 ```
 python -m unittest tests.board tests.round tests.trie
 ```
