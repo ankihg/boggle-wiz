@@ -7,7 +7,7 @@ from board import Board
 
 class TestRound(unittest.TestCase):
 
-    def test_round(self):
+    def test_controlled_round(self):
         valid_words = [ 'carrot', 'cat', 'cats', 'car', 'cars', 'cell', 'komo' ]
         board = Board()
         round = Round(board, valid_words)
@@ -26,6 +26,10 @@ class TestRound(unittest.TestCase):
         self.assertFalse('komo' in found_words) # uses already used positions
         self.assertFalse('ctrs' in found_words) # not a valid word
 
+    def test_uncontrolled_round(self):
+        board = Board()
+        round = Round(board)
+        found_words = round.solve()
 
 
 if __name__ == '__main__':
